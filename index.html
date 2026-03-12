@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Kenya Writers Hub</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --accent: #f97316;
+            --bg: #0f172a;
+            --bg-soft: #020617;
+            --card-bg: #020617;
+            --text-main: #e5e7eb;
+            --text-muted: #9ca3af;
+            --border-soft: #1f2937;
+            --danger: #ef4444;
+            --success: #22c55e;
+            --radius-lg: 18px;
+            --radius-md: 12px;
+            --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.85);
+            --shadow-light: 0 10px 30px rgba(15, 23, 42, 0.6);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+                sans-serif;
+        }
+
+        body {
+            background: radial-gradient(circle at top, #1e293b 0, #020617 45%, #000 100%);
+            color: var(--text-main);
+            min-height: 100vh;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Layout */
+        .page {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 24px 16px 60px;
+        }
+
+        /* Header / Nav */
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 32px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 14px;
+            background: radial-gradient(circle at 20% 20%, #f97316, #2563eb);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-weight: 800;
+            font-size: 20px;
+            box-shadow: 0 10px 25px rgba(15, 23, 42, 0.8);
+        }
+
+        .logo-text-main {
+            font-weight: 700;
+            letter-spacing: 0.03em;
+            font-size: 18px;
+        }
+
+        .logo-text-sub {
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            background: rgba(15, 23, 42, 0.9);
+            padding: 6px 10px;
+            border-radius: 999px;
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            box-shadow: var(--shadow-light);
+        }
+
+        .nav-link {
+            padding: 6px 14px;
+            border-radius: 999px;
+            font-size: 13px;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.18s ease;
+        }
+
+        .nav-link:hover {
+            color: #e5e7eb;
+            background: rgba(148, 163, 184, 0.12);
+        }
+
+        .nav-link.primary {
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            color: #f9fafb;
+            font-weight: 600;
+            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.5);
+        }
+
+        /* Hero */
+        .hero {
+            display: grid;
+            grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+            gap: 26px;
+            margin-bottom: 32px;
+        }
+
+        .hero-main {
+            background: radial-gradient(circle at top left, #1e293b, #020617);
+            border-radius: var(--radius-lg);
+            padding: 22px 22px 20px;
+            border: 1px solid rgba(148, 163, 184, 0.25);
+            box-shadow: var(--shadow-soft);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 4px 10px;
+            border-radius: 999px;
+            background: rgba(15, 23, 42, 0.9);
+            border: 1px solid rgba(148, 163, 184, 0.4);
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+        }
+
+        .hero-pill span {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 18px;
+            height: 18px;
+            border-radius: 999px;
+            background: rgba(37, 99, 235, 0.15);
+            color: #bfdbfe;
+            font-size: 11px;
+        }
+
+        .hero-title {
+            font-size: 26px;
+            line-height: 1.25;
+            margin-bottom: 10px;
+        }
+
+        .hero-title span {
+            background: linear-gradient(135deg, #f97316, #facc15);
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .hero-subtitle {
+            font-size: 13px;
+            color: var(--text-muted);
+            max-width: 420px;
+            margin-bottom: 18px;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 18px;
+        }
+
+        .btn {
+            border-radius: 999px;
+            padding: 9px 18px;
+            font-size: 13px;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.18s ease;
+            white-space: nowrap;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            color: #f9fafb;
+            box-shadow: 0 12px 30px rgba(37, 99, 235, 0.55);
+            font-weight: 600;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 16px 40px rgba(37, 99, 235, 0.7);
+        }
+
+        .btn-ghost {
+            background: rgba(15, 23, 42, 0.9);
+            color: var(--text-muted);
+            border: 1px solid rgba(148, 163, 184, 0.4);
+        }
+
+        .btn-ghost:hover {
+            border-color: rgba(248, 250, 252, 0.7);
+            color: #e5e7eb;
+            transform: translateY(-1px);
+        }
+
+        .hero-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        .hero-meta span {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .hero-meta span::before {
+            content: "";
+            width: 6px;
+            height: 6px;
+            border-radius: 999px;
+            background: #22c55e;
+            box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.25);
+        }
+
+        .hero-side {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .card {
+            background: rgba(15, 23, 42, 0.95);
+            border-radius: var(--radius-md);
+            border: 1px solid rgba(148, 163, 184, 0.3);
+            padding: 14px 14px 12px;
+            box-shadow: var(--shadow-light);
+        }
+
+        .card-title {
+            font-size: 13px;
+            margin-bottom: 4px;
+        }
+
+        .card-subtitle {
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+        }
+
+        .pill-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 8px;
+        }
+
+        .pill {
+            font-size: 10px;
+            padding: 3px 8px;
+            border-radius: 999px;
+            background: rgba(15, 23, 42, 0.9);
+            border: 1px solid rgba(148, 163, 184, 0.4);
+            color: var(--text-muted);
+        }
+
+        .pill.accent {
+            border-color: rgba(249, 115, 22, 0.7);
+            color: #fed7aa;
+            background: rgba(30, 64, 175, 0.4);
+        }
+
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-top: 6px;
+        }
+
+        .stat-row strong {
+            color: #e5e7eb;
+            font-size: 13px;
+        }
+
+        /* Pricing & Payment */
+        .section-title {
+            font-size: 16px;
+            margin-bottom: 6px;
+            margin-top: 10px;
+        }
+
+        .section-subtitle {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-bottom: 14px;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 14px;
+            margin-bottom: 18px;
+        }
+
+        .pricing-card {
+            background: rgba(15, 23, 42, 0.95);
+            border-radius: var(--radius-md);
+            border: 1px solid rgba(148, 163, 184, 0.35);
+            padding: 14px 14px 12px;
+            box-shadow: var(--shadow-light);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pricing-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 9px;
+            padding: 3px 7px;
+            border-radius: 999px;
+            background: rgba(34, 197, 94, 0.12);
+            color: #bbf7d0;
+            border: 1px solid rgba(34, 197, 94, 0.5);
+        }
+
+        .pricing-name {
+            font-size: 13px;
+            margin-bottom: 4px;
+        }
+
+        .pricing-price {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .pricing-price span {
+            font-size: 11px;
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+
+        .pricing-list {
+            list-style: none;
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+        }
+
+        .pricing-list li {
+            margin-bottom: 4px;
+            display: flex;
+            gap: 6px;
+        }
+
+        .pricing-list li::before {
+            content: "•";
+            color: #22c55e;
+            margin-top: 1px;
+        }
+
+        .payment-section {
+            background: rgba(15, 23, 42, 0.95);
+            border-radius: var(--radius-lg);
+            border: 1px solid rgba(148, 163, 184, 0.35);
+            padding: 16px 14px 14px;
+            box-shadow: var(--shadow-soft);
+            margin-top: 4px;
+        }
+
+        .payment-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+            gap: 14px;
+        }
+
+        .payment-label {
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+        }
+
+        .payment-highlight {
+            font-size: 13px;
+            color: #e5e7eb;
+            margin-bottom: 8px;
+        }
+
+        .mpesa-box {
+            background: rgba(15, 23, 42, 0.9);
+            border-radius: var(--radius-md);
+            border: 1px dashed rgba(148, 163, 184, 0.6);
+            padding: 10px 10px 8px;
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        .mpesa-box strong {
+            color: #e5e7eb;
+        }
+
+        .upload-box {
+            background: rgba(15, 23, 42, 0.9);
+            border-radius: var(--radius-md);
+            border: 1px dashed rgba(148, 163, 184, 0.6);
+            padding: 10px 10px 8px;
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        .upload-box input[type="file"] {
+            margin-top: 6px;
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        .upload-box input[type="text"],
+        .upload-box input[type="email"] {
+            width: 100%;
+            margin-top: 6px;
+            padding: 7px 8px;
+            border-radius: 8px;
+            border: 1px solid rgba(148, 163, 184, 0.6);
+            background: rgba(15, 23, 42, 0.9);
+            color: #e5e7eb;
+            font-size: 11px;
+        }
+
+        .upload-box input::placeholder {
+            color: #6b7280;
+        }
+
+        .upload-actions {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 8px;
+        }
+
+        .note {
+            font-size: 10px;
+            color: var(--text-muted);
+            margin-top: 6px;
+        }
+
+        /* Modal */
+        .modal-backdrop {
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.85);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 50;
+        }
+
+        .modal {
+            background: radial-gradient(circle at top, #1f2937, #020617);
+            border-radius: var(--radius-lg);
+            border: 1px solid rgba(148, 163, 184, 0.5);
+            padding: 18px 18px 14px;
+            max-width: 360px;
+            width: 92%;
+            box-shadow: var(--shadow-soft);
+            text-align: left;
+        }
+
+        .modal-title {
+            font-size: 16px;
+            margin-bottom: 6px;
+        }
+
+        .modal-body {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-bottom: 14px;
+        }
+
+        .modal-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 8px;
+        }
+
+        .badge-danger {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 10px;
+            padding: 3px 8px;
+            border-radius: 999px;
+            background: rgba(239, 68, 68, 0.12);
+            color: #fecaca;
+            border: 1px solid rgba(239, 68, 68, 0.5);
+            margin-bottom: 8px;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 26px;
+            font-size: 11px;
+            color: var(--text-muted);
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 8px;
+            border-top: 1px solid rgba(15, 23, 42, 0.9);
+            padding-top: 10px;
+        }
+
+        footer span strong {
+            color: #e5e7eb;
+        }
+
+        /* Responsive */
+        @media (max-width: 800px) {
+            .hero {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .payment-grid {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+
+            nav {
+                align-self: stretch;
+                justify-content: space-between;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 22px;
+            }
+
+            .hero-main {
+                padding: 18px 16px 16px;
+            }
+
+            .page {
+                padding-inline: 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page">
+        <!-- Header -->
+        <header>
+            <div class="logo">
+                <div class="logo-icon">K</div>
+                <div>
+                    <div class="logo-text-main">Kenya Writers Hub</div>
+                    <div class="logo-text-sub">Earn from writing · Kenyan market focused</div>
+                </div>
+            </div>
+            <nav>
+                <div class="nav-link" data-locked-tab="writers">Writers</div>
+                <div class="nav-link" data-locked-tab="articles">Articles</div>
+                <div class="nav-link" data-locked-tab="opportunities">Opportunities</div>
+                <div class="nav-link primary" id="nav-join">Join community</div>
+            </nav>
+        </header>
+
+        <!-- Hero -->
+        <section class="hero">
+            <div class="hero-main">
+                <div class="hero-pill">
+                    <span>●</span>
+                    Trusted space for Kenyan online writers
+                </div>
+                <h1 class="hero-title">
+                    Turn your <span>writing skills</span> into consistent online income.
+                </h1>
+                <p class="hero-subtitle">
+                    Kenya Writers Hub connects you to real tasks, curated opportunities, and a serious community of
+                    Kenyan writers who are ready to earn.
+                </p>
+                <div class="hero-actions">
+                    <button class="btn btn-primary" id="hero-get-started">
+                        Get started · Buy an account
+                    </button>
+                    <button class="btn btn-ghost" id="hero-upload-proof">
+                        Upload payment proof
+                    </button>
+                </div>
+                <div class="hero-meta">
+                    <span>Fast approval after payment proof</span>
+                    <span>Beginner friendly · No experience required</span>
+                </div>
+            </div>
+
+            <div class="hero-side">
+                <div class="card">
+                    <div class="card-title">Why accounts are required</div>
+                    <div class="card-subtitle">
+                        We use paid accounts to filter serious writers and keep tasks for committed members only.
+                    </div>
+                    <div class="pill-row">
+                        <div class="pill accent">Anti-scam protection</div>
+                        <div class="pill">Verified task sources</div>
+                        <div class="pill">Priority support</div>
+                    </div>
+                    <div class="stat-row">
+                        <span>Writers onboarded</span>
+                        <strong>120+ active</strong>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-title">What you unlock after payment</div>
+                    <ul class="pricing-list">
+                        <li>Access to writing tasks & opportunities</li>
+                        <li>Private community & mentorship</li>
+                        <li>Guides on how to pass client tests</li>
+                    </ul>
+                    <div class="stat-row">
+                        <span>Average weekly earnings</span>
+                        <strong>KES 3,000 – 15,000+</strong>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing -->
+        <section>
+            <h2 class="section-title">Choose an account to get started</h2>
+            <p class="section-subtitle">
+                Kindly buy one of the accounts below to proceed and unlock writers, articles, and opportunities
+                sections.
+            </p>
+
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="pricing-name">Starter Account</div>
+                    <div class="pricing-price">
+                        KES 350 <span>one-time</span>
+                    </div>
+                    <ul class="pricing-list">
+                        <li>Access to basic writing tasks</li>
+                        <li>Beginner-friendly guides</li>
+                        <li>Email support</li>
+                    </ul>
+                    <button class="btn btn-ghost" onclick="scrollToPayment()">
+                        Buy Starter & upload proof
+                    </button>
+                </div>
+
+                <div class="pricing-card">
+                    <div class="pricing-badge">Most popular</div>
+                    <div class="pricing-name">Pro Writer Account</div>
+                    <div class="pricing-price">
+                        KES 650 <span>one-time</span>
+                    </div>
+                    <ul class="pricing-list">
+                        <li>Access to all writing tasks</li>
+                        <li>Priority in task assignment</li>
+                        <li>Community mentorship</li>
+                        <li>Faster approval</li>
+                    </ul>
+                    <button class="btn btn-primary" onclick="scrollToPayment()">
+                        Buy Pro & upload proof
+                    </button>
+                </div>
+
+                <div class="pricing-card">
+                    <div class="pricing-name">Agency Account</div>
+                    <div class="pricing-price">
+                        KES 1,200 <span>one-time</span>
+                    </div>
+                    <ul class="pricing-list">
+                        <li>Access to premium & bulk tasks</li>
+                        <li>Can manage multiple writers</li>
+                        <li>Direct support from admin</li>
+                    </ul>
+                    <button class="btn btn-ghost" onclick="scrollToPayment()">
+                        Buy Agency & upload proof
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Payment & Upload Proof -->
+        <section class="payment-section" id="payment-section">
+            <div class="payment-grid">
+                <div>
+                    <div class="payment-label">Step 1 · Make payment</div>
+                    <div class="payment-highlight">
+                        Kindly buy one of the accounts to proceed and unlock all tasks.
+                    </div>
+                    <div class="mpesa-box">
+                        <strong>Payment method: M-Pesa</strong><br />
+                        <br />
+                        <strong>Till:</strong> 6958261 [Agent Kelvin] <br />
+                        <strong>Account:</strong> KENYA WRITERS HUB<br />
+                        <strong>Amount:</strong> KES 450 / 650 / 1,200 (choose your account)<br />
+                        <br />
+                        After payment, take a clear screenshot of your M-Pesa confirmation message.
+                    </div>
+                    <p class="note">
+                        Once your payment is confirmed, your account will be activated and you’ll be able to access
+                        writers, articles, and opportunities.
+                    </p>
+                </div>
+
+                <div>
+                    <div class="payment-label">Step 2 · Upload payment proof</div>
+                    <div class="upload-box">
+                        <form onsubmit="handleUpload(event)">
+                            <label class="payment-label">Your full name</label>
+                            <input type="text" name="name" placeholder="Enter your full name" required />
+
+                            <label class="payment-label">Email address</label>
+                            <input type="email" name="email" placeholder="Enter your email" required />
+
+                            <label class="payment-label">Account type paid for</label>
+                            <input type="text" name="accountType" placeholder="Starter / Pro / Agency" required />
+
+                            <label class="payment-label">Upload payment screenshot</label>
+                            <input type="file" name="screenshot" accept="image/*" required />
+
+                            <div class="upload-actions">
+                                <button type="submit" class="btn btn-primary">
+                                    Upload payment proof
+                                </button>
+                            </div>
+                        </form>
+                        <p class="note">
+                            This form is a placeholder. On the live system, an admin will review your proof and activate
+                            your account.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Modal -->
+        <div class="modal-backdrop" id="locked-modal">
+            <div class="modal">
+                <div class="badge-danger">
+                    Access locked · Payment required
+                </div>
+                <div class="modal-title">Kindly buy one of the accounts to proceed</div>
+                <div class="modal-body">
+                    The Writers, Articles, and Opportunities sections are only available to members with an active
+                    account.
+                    <br /><br />
+                    To continue, please buy one of the accounts and upload your payment proof. Once approved, you’ll be
+                    able to access tasks and start earning.
+                </div>
+                <div class="modal-actions">
+                    <button class="btn btn-ghost" id="modal-close">
+                        Close
+                    </button>
+                    <button class="btn btn-primary" id="modal-go-payment">
+                        Upload payment proof
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <span>© <strong>Kenya Writers Hub</strong> · Built for Kenyan online writers.</span>
+            <span>After activation, you’ll receive access instructions via email.</span>
+        </footer>
+    </div>
+
+    <script>
+        // Handle locked tabs (Writers, Articles, Opportunities)
+        document.querySelectorAll("[data-locked-tab]").forEach((el) => {
+            el.addEventListener("click", (e) => {
+                e.preventDefault();
+                openLockedModal();
+            });
+        });
+
+        // Join community & hero buttons also scroll to payment
+        document.getElementById("nav-join").addEventListener("click", scrollToPayment);
+        document.getElementById("hero-get-started").addEventListener("click", scrollToPayment);
+        document.getElementById("hero-upload-proof").addEventListener("click", scrollToPayment);
+
+        // Modal logic
+        const modalBackdrop = document.getElementById("locked-modal");
+        const modalClose = document.getElementById("modal-close");
+        const modalGoPayment = document.getElementById("modal-go-payment");
+
+        function openLockedModal() {
+            modalBackdrop.style.display = "flex";
+        }
+
+        function closeLockedModal() {
+            modalBackdrop.style.display = "none";
+        }
+
+        modalClose.addEventListener("click", closeLockedModal);
+        modalGoPayment.addEventListener("click", () => {
+            closeLockedModal();
+            scrollToPayment();
+        });
+
+        modalBackdrop.addEventListener("click", (e) => {
+            if (e.target === modalBackdrop) {
+                closeLockedModal();
+            }
+        });
+
+        // Smooth scroll to payment section
+        function scrollToPayment() {
+            const section = document.getElementById("payment-section");
+            if (section) {
+                section.scrollIntoView({ behavior: "smooth", block: "start" });
+            }
+        }
+
+        // Fake upload handler (front-end only)
+        function handleUpload(event) {
+            event.preventDefault();
+            alert(
+                "Your payment proof has been captured.\n\nIn a real system, an admin would now review and activate your account."
+            );
+            event.target.reset();
+        }
+    </script>
+</body>
+
+</html>
