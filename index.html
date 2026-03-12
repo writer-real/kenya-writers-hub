@@ -728,9 +728,9 @@
                     <div class="mpesa-box">
                         <strong>Payment method: M-Pesa</strong><br />
                         <br />
-                        <strong>Till:</strong> 6958261 [Agent Kelvin] <br />
+                        <strong>Paybill / Till:</strong> 123456<br />
                         <strong>Account:</strong> KENYA WRITERS HUB<br />
-                        <strong>Amount:</strong> KES 450 / 650 / 1,200 (choose your account)<br />
+                        <strong>Amount:</strong> KES 350 / 650 / 1,200 (choose your account)<br />
                         <br />
                         After payment, take a clear screenshot of your M-Pesa confirmation message.
                     </div>
@@ -860,5 +860,150 @@
         }
     </script>
 </body>
+
+<h2>Pay via M‑Pesa</h2>
+<p>You can make a secure payment directly to our Till Number:</p>
+<p class="till-number">6958261</p>
+
+<button class="mpesa-btn" onclick="openPaymentPopup()">Pay with M‑Pesa</button>
+</div>
+
+<!-- Popup Background -->
+<div id="popup-bg" class="popup-bg" onclick="closePaymentPopup()"></div>
+
+<!-- Popup Box -->
+<div id="popup-box" class="popup-box">
+    <h2>Confirm Payment</h2>
+    <p>You are about to pay via <strong>M‑Pesa</strong> to Till Number:</p>
+    <p class="till-number">6958261</p>
+    <p>Click <strong>Pay Now</strong> to continue.</p>
+
+    <div class="popup-buttons">
+        <button class="cancel-btn" onclick="closePaymentPopup()">Cancel</button>
+        <button class="confirm-btn" onclick="payMpesa()">Pay Now</button>
+    </div>
+</div>
+
+<style>
+    /* M-Pesa Section */
+    .mpesa-section {
+        margin-top: 40px;
+        padding: 20px;
+        background: #f4f4f4;
+        text-align: center;
+        border-radius: 10px;
+    }
+
+    .mpesa-section h2 {
+        color: #34b233;
+    }
+
+    .till-number {
+        font-size: 24px;
+        font-weight: bold;
+        color: #34b233;
+    }
+
+    /* Payment Button */
+    .mpesa-btn {
+        background-color: #34b233;
+        color: white;
+        padding: 14px 22px;
+        border: none;
+        border-radius: 8px;
+        font-size: 18px;
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+    .mpesa-btn:hover {
+        background-color: #2a8f29;
+    }
+
+    /* Popup Background */
+    .popup-bg {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.6);
+        z-index: 999;
+    }
+
+    /* Popup Box */
+    .popup-box {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: white;
+        padding: 25px;
+        width: 85%;
+        max-width: 350px;
+        border-radius: 12px;
+        text-align: center;
+        z-index: 1000;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .popup-buttons {
+        margin-top: 20px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .cancel-btn,
+    .confirm-btn {
+        padding: 10px 18px;
+        border: none;
+        border-radius: 6px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    .cancel-btn {
+        background: #ccc;
+    }
+
+    .confirm-btn {
+        background: #34b233;
+        color: white;
+    }
+</style>
+
+<script>
+    function openPaymentPopup() {
+        document.getElementById("popup-bg").style.display = "block";
+        document.getElementById("popup-box").style.display = "block";
+    }
+
+    function closePaymentPopup() {
+        document.getElementById("popup-bg").style.display = "none";
+        document.getElementById("popup-box").style.display = "none";
+    }
+
+    function payMpesa() {
+        window.location.href = "tel:*234*1*6958261%23";
+    }
+</script>
+
+<script>
+    function openPaymentPopup() {
+        document.getElementById("popup-bg").style.display = "block";
+        document.getElementById("popup-box").style.display = "block";
+    }
+
+    function closePaymentPopup() {
+        document.getElementById("popup-bg").style.display = "none";
+        document.getElementById("popup-box").style.display = "none";
+    }
+
+    function payMpesa() {
+        window.location.href = "tel:*234*1*6958261%23";
+    }
+</script>
 
 </html>
