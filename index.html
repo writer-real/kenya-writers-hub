@@ -728,11 +728,10 @@
                     <div class="mpesa-box">
                         <strong>Payment method: M-Pesa</strong><br />
                         <br />
-                        <strong>Paybill / Till:</strong> 6958261<br />
-                        <strong>Account:</strong> KENYA WRITERS HUB<br />
+                        <strong>Till Number:</strong> 6958261<br />
                         <strong>Amount:</strong> KES 450 / 650 / 1,200 (choose your account)<br />
                         <br />
-                        After payment, take a clear screenshot of your M-Pesa confirmation message.
+                        After payment, upload a screenshot of your M-Pesa confirmation message.
                     </div>
                     <p class="note">
                         Once your payment is confirmed, your account will be activated and you’ll be able to access
@@ -794,78 +793,72 @@
                     </button>
                 </div>
             </div>
-        </div>
 
-        <!-- Footer -->
-        <footer>
-            <span>© <strong>Kenya Writers Hub</strong> · Built for Kenyan online writers.</span>
-            <span>After activation, you’ll receive access instructions via email.</span>
-        </footer>
-    </div>
 
-    <script>
-        // Handle locked tabs (Writers, Articles, Opportunities)
-        document.querySelectorAll("[data-locked-tab]").forEach((el) => {
-            el.addEventListener("click", (e) => {
-                e.preventDefault();
-                openLockedModal();
-            });
-        });
+            <script>
+                // Handle locked tabs (Writers, Articles, Opportunities)
+                document.querySelectorAll("[data-locked-tab]").forEach((el) => {
+                    el.addEventListener("click", (e) => {
+                        e.preventDefault();
+                        openLockedModal();
+                    });
+                });
 
-        // Join community & hero buttons also scroll to payment
-        document.getElementById("nav-join").addEventListener("click", scrollToPayment);
-        document.getElementById("hero-get-started").addEventListener("click", scrollToPayment);
-        document.getElementById("hero-upload-proof").addEventListener("click", scrollToPayment);
+                // Join community & hero buttons also scroll to payment
+                document.getElementById("nav-join").addEventListener("click", scrollToPayment);
+                document.getElementById("hero-get-started").addEventListener("click", scrollToPayment);
+                document.getElementById("hero-upload-proof").addEventListener("click", scrollToPayment);
 
-        // Modal logic
-        const modalBackdrop = document.getElementById("locked-modal");
-        const modalClose = document.getElementById("modal-close");
-        const modalGoPayment = document.getElementById("modal-go-payment");
+                // Modal logic
+                const modalBackdrop = document.getElementById("locked-modal");
+                const modalClose = document.getElementById("modal-close");
+                const modalGoPayment = document.getElementById("modal-go-payment");
 
-        function openLockedModal() {
-            modalBackdrop.style.display = "flex";
-        }
+                function openLockedModal() {
+                    modalBackdrop.style.display = "flex";
+                }
 
-        function closeLockedModal() {
-            modalBackdrop.style.display = "none";
-        }
+                function closeLockedModal() {
+                    modalBackdrop.style.display = "none";
+                }
 
-        modalClose.addEventListener("click", closeLockedModal);
-        modalGoPayment.addEventListener("click", () => {
-            closeLockedModal();
-            scrollToPayment();
-        });
+                modalClose.addEventListener("click", closeLockedModal);
+                modalGoPayment.addEventListener("click", () => {
+                    closeLockedModal();
+                    scrollToPayment();
+                });
 
-        modalBackdrop.addEventListener("click", (e) => {
-            if (e.target === modalBackdrop) {
-                closeLockedModal();
-            }
-        });
+                modalBackdrop.addEventListener("click", (e) => {
+                    if (e.target === modalBackdrop) {
+                        closeLockedModal();
+                    }
+                });
 
-        // Smooth scroll to payment section
-        function scrollToPayment() {
-            const section = document.getElementById("payment-section");
-            if (section) {
-                section.scrollIntoView({ behavior: "smooth", block: "start" });
-            }
-        }
+                // Smooth scroll to payment section
+                function scrollToPayment() {
+                    const section = document.getElementById("payment-section");
+                    if (section) {
+                        section.scrollIntoView({ behavior: "smooth", block: "start" });
+                    }
+                }
 
-        // Fake upload handler (front-end only)
-        function handleUpload(event) {
-            event.preventDefault();
-            alert(
-                "Your payment proof has been captured.\n\nIn a real system, an admin would now review and activate your account."
-            );
-            event.target.reset();
-        }
-    </script>
+                // Fake upload handler (front-end only)
+                function handleUpload(event) {
+                    event.preventDefault();
+                    alert(
+                        "Your payment proof has been captured.\n\nIn a real system, an admin would now review and activate your account."
+                    );
+                    event.target.reset();
+                }
+            </script>
 </body>
+<!-- M-Pesa Payment Section (BOTTOM OF PAGE) -->
+<div class="mpesa-section">
+    <h2>Buy via M‑Pesa till</h2>
+    <p>You can make a secure payment directly to our Till Number:</p>
+    <p class="till-number">6958261 [KELVIN]</p>
 
-<h2>Pay via M‑Pesa</h2>
-<p>You can make a secure payment directly to our Till Number:</p>
-<p class="till-number">6958261</p>
-
-<button class="mpesa-btn" onclick="openPaymentPopup()">Pay with M‑Pesa</button>
+    <button class="mpesa-btn" onclick="openPaymentPopup()">Pay with M‑Pesa</button>
 </div>
 
 <!-- Popup Background -->
@@ -875,7 +868,7 @@
 <div id="popup-box" class="popup-box">
     <h2>Confirm Payment</h2>
     <p>You are about to pay via <strong>M‑Pesa</strong> to Till Number:</p>
-    <p class="till-number">6958261</p>
+    <p class="till-number">6958261 [KELVIN]</p>
     <p>Click <strong>Pay Now</strong> to continue.</p>
 
     <div class="popup-buttons">
@@ -986,24 +979,29 @@
     }
 
     function payMpesa() {
-        window.location.href = "tel:*234*1*6958261%23";
+        // This opens the M-Pesa USSD dialer
+        window.location.href = "6958261;
     }
 </script>
 
-<script>
-    function openPaymentPopup() {
-        document.getElementById("popup-bg").style.display = "block";
-        document.getElementById("popup-box").style.display = "block";
-    }
+</style>
 
-    function closePaymentPopup() {
-        document.getElementById("popup-bg").style.display = "none";
-        document.getElementById("popup-box").style.display = "none";
-    }
-
-    function payMpesa() {
-        window.location.href = "tel:*234*1*6958261%23";
-    }
 </script>
+<!-- Customer Support Section -->
+<div class="contact-section">
+    <h2>Customer Support</h2>
+    <p>If you have any questions, feedback, or need help, reach out to us anytime.</p>
+    <p>
+        Email us at:
+        <a href="mailto:kenyavision@gmail.com">kenyavision@gmail.com</a>
+    </p>
+</div>
+
+<!-- Footer -->
+<footer>
+    <span>© <strong>Kenya Writers Hub</strong> · Built for Kenyan online writers.</span>
+    <span>After activation, you’ll receive access instructions via email.</span>
+</footer>
+</div>
 
 </html>
